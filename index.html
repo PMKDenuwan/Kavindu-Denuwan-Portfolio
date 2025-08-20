@@ -1,213 +1,2561 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Kavindu Denuwan – Full Stack Developer & UI/UX Designer in Sri Lanka. Specializing in MERN stack, Spring Boot, and modern web technologies." />
-  <title>Kavindu Denuwan - Full-Stack Developer</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Kavindu Denuwan – Full Stack Developer & UI/UX Designer in Sri Lanka. Specializing in MERN stack, Spring Boot, and modern web technologies.">
+    <meta name="keywords" content="Full Stack Developer, MERN Stack, UI/UX Designer, React, Node.js, JavaScript, Sri Lanka">
+    <meta name="author" content="Kavindu Denuwan">
+    <title>Kavindu Denuwan - Full-Stack Developer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-  <!-- Fonts & Icons -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+        :root {
+            --primary: #00F5FF;
+            --primary-dark: #00D4DB;
+            --secondary: #9333EA;
+            --accent: #FF6B6B;
+            --success: #10B981;
+            --warning: #F59E0B;
+            
+            --bg-primary: #0B0F19;
+            --bg-secondary: #111827;
+            --bg-tertiary: #1F2937;
+            --bg-card: #1E293B;
+            --bg-glass: rgba(30, 41, 59, 0.8);
+            
+            --text-primary: #F8FAFC;
+            --text-secondary: #CBD5E1;
+            --text-tertiary: #94A3B8;
+            --text-muted: #64748B;
+            
+            --border-primary: #334155;
+            --border-secondary: #475569;
+            --border-accent: var(--primary);
+            
+            --shadow-sm: 0 4px 16px rgba(0, 0, 0, 0.15);
+            --shadow-md: 0 12px 32px rgba(0, 0, 0, 0.25);
+            --shadow-lg: 0 24px 64px rgba(0, 0, 0, 0.35);
+            --shadow-glow: 0 0 40px rgba(0, 245, 255, 0.3);
+            --shadow-glow-purple: 0 0 40px rgba(147, 51, 234, 0.2);
+            
+            --gradient-primary: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            --gradient-secondary: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);
+            --gradient-dark: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+            --gradient-mesh: 
+                radial-gradient(at 40% 20%, hsla(188, 100%, 50%, 0.12) 0px, transparent 50%),
+                radial-gradient(at 80% 0%, hsla(271, 89%, 56%, 0.1) 0px, transparent 50%),
+                radial-gradient(at 0% 50%, hsla(6, 87%, 69%, 0.08) 0px, transparent 50%);
+            
+            --font-display: 'Inter', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
 
-  <!-- External Stylesheet -->
-  <link rel="stylesheet" href="styles.css" />
+        body {
+            font-family: var(--font-display);
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: var(--bg-primary);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-secondary);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(45deg, var(--primary-dark), var(--secondary));
+        }
+
+        /* Floating Particles Background */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: var(--primary);
+            border-radius: 50%;
+            animation: float 8s infinite linear;
+            opacity: 0.6;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: var(--bg-glass);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-primary);
+            z-index: 1000;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .header-scrolled {
+            background: var(--bg-secondary);
+            box-shadow: var(--shadow-md);
+            border-bottom-color: var(--border-accent);
+        }
+
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 2rem;
+        }
+
+        .logo {
+            font-family: var(--font-mono);
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .logo::before {
+            content: '<';
+            position: absolute;
+            left: -20px;
+            color: var(--primary);
+            animation: blink 2s infinite;
+        }
+
+        .logo::after {
+            content: '/>';
+            position: absolute;
+            right: -25px;
+            color: var(--primary);
+            animation: blink 2s infinite 1s;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-weight: 500;
+            position: relative;
+            transition: all 0.3s ease;
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+        }
+
+        .nav-links a::before {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            overflow: hidden;
+            color: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::before,
+        .nav-links a.active::before {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: var(--bg-primary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--gradient-mesh);
+            animation: gradientShift 8s ease-in-out infinite;
+        }
+
+        .hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-text {
+            animation: slideInLeft 1s ease-out;
+        }
+
+        .hero-greeting {
+            font-family: var(--font-mono);
+            color: var(--primary);
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.2s forwards;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .hero-greeting::before {
+            content: '👋';
+            animation: wave 2s ease-in-out infinite;
+        }
+
+        @keyframes wave {
+            0%, 50%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(20deg); }
+            75% { transform: rotate(-10deg); }
+        }
+
+        .hero-title {
+            font-size: 4.5rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.4s forwards;
+            line-height: 1.1;
+        }
+
+        .hero-subtitle {
+            font-size: 2rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.6s forwards;
+        }
+
+        .hero-description {
+            font-size: 1.2rem;
+            color: var(--text-tertiary);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.8s forwards;
+        }
+
+        /* Stats Section */
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-bottom: 2.5rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.9s forwards;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: var(--bg-card);
+            border-radius: 16px;
+            border: 1px solid var(--border-primary);
+            transition: all 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--primary);
+            display: block;
+            font-family: var(--font-mono);
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-top: 0.5rem;
+            font-weight: 500;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 1s forwards;
+        }
+
+        .btn {
+            padding: 1.2rem 2.5rem;
+            border: none;
+            border-radius: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            font-size: 1.1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: var(--bg-primary);
+            box-shadow: var(--shadow-glow);
+            font-weight: 700;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 0 60px rgba(0, 245, 255, 0.5);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: var(--bg-primary);
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .btn-download {
+            background: var(--gradient-secondary);
+            color: white;
+            box-shadow: var(--shadow-glow-purple);
+        }
+
+        .btn-download:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 0 60px rgba(147, 51, 234, 0.4);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 1.2s forwards;
+        }
+
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            border-radius: 20px;
+            background: var(--bg-card);
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid var(--border-primary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--gradient-primary);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .social-link:hover::before {
+            opacity: 1;
+        }
+
+        .social-link:hover {
+            color: var(--bg-primary);
+            transform: translateY(-8px) scale(1.1) rotate(5deg);
+            box-shadow: var(--shadow-md);
+            border-color: var(--primary);
+        }
+
+        .social-link i {
+            font-size: 24px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: slideInRight 1s ease-out 0.5s both;
+            position: relative;
+        }
+
+        .hero-visual::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 245, 255, 0.05) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+            z-index: 0;
+        }
+
+        .code-window {
+            background: var(--bg-card);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 1px solid var(--border-primary);
+            box-shadow: var(--shadow-lg);
+            width: 100%;
+            max-width: 550px;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .code-window::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 50px;
+            background: var(--gradient-dark);
+            border-bottom: 1px solid var(--border-primary);
+        }
+
+        .window-controls {
+            position: absolute;
+            top: 16px;
+            left: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 2;
+        }
+
+        .window-control {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .window-control:hover {
+            transform: scale(1.2);
+        }
+
+        .control-close { background: #FF5F57; }
+        .control-minimize { background: #FFBD2E; }
+        .control-maximize { background: #28CA42; }
+
+        .window-title {
+            position: absolute;
+            top: 16px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--text-tertiary);
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            z-index: 2;
+        }
+
+        .code-content {
+            margin-top: 50px;
+            font-family: var(--font-mono);
+            font-size: 0.95rem;
+            line-height: 1.8;
+        }
+
+        .code-line {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.8rem;
+            opacity: 0;
+            animation: typeIn 0.5s ease-out forwards;
+        }
+
+        .code-line:nth-child(1) { animation-delay: 1.5s; }
+        .code-line:nth-child(2) { animation-delay: 1.7s; }
+        .code-line:nth-child(3) { animation-delay: 1.9s; }
+        .code-line:nth-child(4) { animation-delay: 2.1s; }
+        .code-line:nth-child(5) { animation-delay: 2.3s; }
+        .code-line:nth-child(6) { animation-delay: 2.5s; }
+
+        .line-number {
+            color: var(--text-muted);
+            margin-right: 1.5rem;
+            min-width: 25px;
+            text-align: right;
+        }
+
+        .code-keyword { color: var(--secondary); font-weight: 600; }
+        .code-string { color: var(--success); }
+        .code-function { color: var(--primary); font-weight: 600; }
+        .code-comment { color: var(--text-muted); font-style: italic; }
+
+        /* About Section */
+        .about {
+            background: var(--bg-secondary);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+        }
+
+        .about-highlights {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .highlight-item {
+            background: var(--bg-card);
+            padding: 1.5rem;
+            border-radius: 16px;
+            border: 1px solid var(--border-primary);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .highlight-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .highlight-number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--primary);
+            display: block;
+            font-family: var(--font-mono);
+        }
+
+        .highlight-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-top: 0.5rem;
+        }
+
+        /* Sections */
+        .section {
+            padding: 8rem 2rem;
+            position: relative;
+        }
+
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--border-primary), transparent);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .section-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--gradient-primary);
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            color: var(--text-secondary);
+            font-size: 1.4rem;
+            font-weight: 500;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Enhanced Skills Section */
+        .skills {
+            background: var(--bg-secondary);
+        }
+
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background: var(--bg-card);
+            border-radius: 20px;
+            padding: 2.5rem;
+            border: 1px solid var(--border-primary);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-category::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gradient-primary);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .skill-category:hover::before {
+            transform: scaleX(1);
+        }
+
+        .skill-category:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary);
+        }
+
+        .skill-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .skill-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-primary);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--bg-primary);
+            font-size: 1.4rem;
+            box-shadow: var(--shadow-glow);
+        }
+
+        .skill-category h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .skill-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1rem;
+        }
+
+        .skill-item {
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+            padding: 0.8rem 1rem;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border: 1px solid var(--border-secondary);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .skill-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-primary);
+            transition: left 0.3s ease;
+        }
+
+        .skill-item:hover::before {
+            left: 0;
+        }
+
+        .skill-item:hover {
+            color: var(--bg-primary);
+            border-color: var(--primary);
+            transform: translateY(-3px) scale(1.05);
+        }
+
+        .skill-item span {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Enhanced Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 3rem;
+        }
+
+        .project-card {
+            background: var(--bg-card);
+            border-radius: 24px;
+            overflow: hidden;
+            border: 1px solid var(--border-primary);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            cursor: pointer;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--gradient-primary);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: 0;
+        }
+
+        .project-card:hover::before {
+            opacity: 0.05;
+        }
+
+        .project-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary);
+        }
+
+        .project-screenshots {
+            height: 200px;
+            position: relative;
+            overflow: hidden;
+            background: var(--gradient-secondary);
+        }
+
+        .screenshot {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .screenshot.active {
+            opacity: 1;
+        }
+
+        .screenshot-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--gradient-secondary);
+            color: white;
+            font-size: 3rem;
+        }
+
+        .screenshot-nav {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 2;
+        }
+
+        .screenshot-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .screenshot-dot.active {
+            background: white;
+        }
+
+        .project-header {
+            padding: 2rem;
+            background: var(--bg-card);
+            position: relative;
+            z-index: 1;
+        }
+
+        .project-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: var(--text-primary);
+        }
+
+        .project-title-text {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .project-title i {
+            font-size: 1.2rem;
+            color: var(--primary);
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .project-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: var(--bg-tertiary);
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-primary);
+        }
+
+        .project-link:hover {
+            background: var(--primary);
+            color: var(--bg-primary);
+            transform: scale(1.1);
+        }
+
+        .project-period {
+            opacity: 0.8;
+            font-size: 0.9rem;
+            font-family: var(--font-mono);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .project-description {
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+
+        .tech-tag {
+            background: var(--bg-tertiary);
+            color: var(--primary);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: 1px solid var(--primary);
+            font-family: var(--font-mono);
+            transition: all 0.3s ease;
+        }
+
+        .tech-tag:hover {
+            background: var(--primary);
+            color: var(--bg-primary);
+            transform: translateY(-2px);
+        }
+
+        /* Experience Section */
+        .experience {
+            background: var(--bg-primary);
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--gradient-primary);
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            display: flex;
+            justify-content: flex-end;
+            padding-right: 50px;
+            position: relative;
+            margin: 3rem 0;
+            width: 50%;
+        }
+
+        .timeline-item:nth-child(odd) {
+            align-self: flex-end;
+            justify-content: flex-start;
+            padding-left: 50px;
+            padding-right: 0;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+
+        .timeline-content {
+            background: var(--bg-card);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-primary);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary);
+        }
+
+        .timeline-marker {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 20px;
+            height: 20px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            border: 4px solid var(--bg-primary);
+            z-index: 2;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-marker {
+            right: -10px;
+            left: auto;
+        }
+
+        .timeline-item:nth-child(even) .timeline-marker {
+            left: -10px;
+        }
+
+        .timeline-date {
+            font-family: var(--font-mono);
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-title {
+            color: var(--text-primary);
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-company {
+            color: var(--text-secondary);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-description {
+            color: var(--text-tertiary);
+            line-height: 1.6;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: var(--bg-secondary);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: start;
+        }
+
+        .contact-info {
+            background: var(--gradient-primary);
+            border-radius: 24px;
+            padding: 3.5rem;
+            color: var(--bg-primary);
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-info::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        .contact-info > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 2.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 2.5rem;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .contact-item:hover {
+            transform: translateX(20px);
+        }
+
+        .contact-icon {
+            width: 70px;
+            height: 70px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+            font-size: 1.8rem;
+        }
+
+        .contact-details h4 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+        }
+
+        .contact-details p {
+            opacity: 0.9;
+            font-family: var(--font-mono);
+            font-size: 1rem;
+        }
+
+        .contact-form {
+            background: var(--bg-card);
+            border-radius: 24px;
+            padding: 3.5rem;
+            border: 1px solid var(--border-primary);
+            box-shadow: var(--shadow-md);
+        }
+
+        .form-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 2.5rem;
+            color: var(--text-primary);
+        }
+
+        .form-group {
+            margin-bottom: 2.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            font-size: 1.1rem;
+        }
+
+        .form-input,
+        .form-textarea {
+            width: 100%;
+            padding: 1.2rem;
+            border: 2px solid var(--border-primary);
+            border-radius: 16px;
+            font-family: inherit;
+            font-size: 1rem;
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 6px rgba(0, 245, 255, 0.1);
+            background: var(--bg-card);
+        }
+
+        .form-textarea {
+            height: 160px;
+            resize: vertical;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-primary);
+            color: var(--text-secondary);
+            text-align: center;
+            padding: 4rem 2rem;
+            border-top: 1px solid var(--border-primary);
+            position: relative;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .footer-text {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-love {
+            color: var(--accent);
+            animation: heartbeat 2s ease-in-out infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 50%, 100% { transform: scale(1); }
+            25%, 75% { transform: scale(1.2); }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-60px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(60px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes typeIn {
+            from {
+                opacity: 0;
+                transform: translateX(-15px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0.3; }
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Scroll Animations */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.6s ease;
+        }
+
+        .scroll-reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Loading Animation */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            opacity: 1;
+            transition: opacity 0.5s ease;
+        }
+
+        .loading-overlay.fade-out {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loading-spinner {
+            width: 60px;
+            height: 60px;
+            border: 3px solid var(--border-primary);
+            border-top: 3px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+                text-align: center;
+            }
+            
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+                text-align: center;
+            }
+
+            .hero-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .timeline::before {
+                left: 30px;
+            }
+
+            .timeline-item,
+            .timeline-item:nth-child(odd),
+            .timeline-item:nth-child(even) {
+                width: 100%;
+                padding-left: 80px;
+                padding-right: 0;
+                justify-content: flex-start;
+                left: 0;
+            }
+
+            .timeline-marker,
+            .timeline-item:nth-child(odd) .timeline-marker,
+            .timeline-item:nth-child(even) .timeline-marker {
+                left: 20px;
+                right: auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--bg-card);
+                flex-direction: column;
+                padding: 2rem;
+                border-top: 1px solid var(--border-primary);
+                box-shadow: var(--shadow-md);
+                backdrop-filter: blur(20px);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero-title {
+                font-size: 3rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.5rem;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .skills-container,
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .section {
+                padding: 5rem 1rem;
+            }
+
+            .hero-stats {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .social-links {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            .about-highlights {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.3rem;
+            }
+            
+            nav {
+                padding: 1rem;
+            }
+
+            .skill-category,
+            .project-card,
+            .contact-form,
+            .contact-info {
+                padding: 2rem;
+            }
+
+            .stat-item {
+                padding: 1rem;
+            }
+
+            .stat-number {
+                font-size: 1.5rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .project-card {
+                min-width: unset;
+            }
+        }
+    </style>
 </head>
 <body>
-  <!-- Header -->
-  <header id="header">
-    <nav>
-      <div class="logo">KD</div>
-      <ul class="nav-links" id="navLinks">
-        <li><a href="#home" class="nav-link active" data-text="home">home</a></li>
-        <li><a href="#skills" class="nav-link" data-text="skills">skills</a></li>
-        <li><a href="#projects" class="nav-link" data-text="projects">projects</a></li>
-        <li><a href="#contact" class="nav-link" data-text="contact">contact</a></li>
-      </ul>
-      <button class="mobile-menu-btn" id="mobileMenuBtn"><i class="fas fa-bars"></i></button>
-    </nav>
-  </header>
-
-  <!-- Hero Section -->
-  <section id="home" class="hero">
-    <div class="hero-content">
-      <div class="hero-text">
-        <div class="hero-greeting">Hello, I'm</div>
-        <h1 class="hero-title">Kavindu Denuwan</h1>
-        <p class="hero-subtitle">Full-Stack Developer & UI/UX Designer</p>
-        <p class="hero-description">Transforming ideas into powerful digital experiences with cutting-edge technologies and creative design solutions.</p>
-
-        <div class="cta-buttons">
-          <a href="#contact" class="btn btn-primary"><i class="fas fa-rocket"></i> Hire Me</a>
-          <a href="#projects" class="btn btn-secondary"><i class="fas fa-code"></i> View Projects</a>
-          <a href="#" class="btn btn-download" id="downloadCV"><i class="fas fa-download"></i> Download CV</a>
-        </div>
-
-        <div class="social-links">
-          <a href="mailto:kavindudenuwan2002@gmail.com" class="social-link"><i class="fas fa-envelope"></i></a>
-          <a href="tel:+94702456870" class="social-link"><i class="fas fa-phone"></i></a>
-          <a href="https://linkedin.com/in/kavindu-denuwan" class="social-link" target="_blank"><i class="fab fa-linkedin"></i></a>
-          <a href="https://github.com/kavindu-denuwan" class="social-link" target="_blank"><i class="fab fa-github"></i></a>
-        </div>
-      </div>
-
-      <div class="hero-visual">
-        <div class="code-window">
-          <div class="window-title">developer.js</div>
-          <pre><code>const developer = {
-  name: "Kavindu Denuwan",
-  skills: "Full-Stack + UI/UX",
-  passion: "Building Digital Solutions",
-  available: true
-}; // Ready to innovate 🚀</code></pre>
-        </div>
-      </div>
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner"></div>
     </div>
-  </section>
 
-  <!-- Skills Section -->
-  <section id="skills" class="section skills">
-    <div class="container">
-      <div class="section-header">
-        <h2 class="section-title">Technical Arsenal</h2>
-        <p class="section-subtitle">Technologies and tools I specialize in</p>
-      </div>
-      <div class="skills-container">
-        <div class="skill-category">
-          <h3>Programming</h3>
-          <div class="skill-items">
-            <span class="skill-item">Java</span>
-            <span class="skill-item">JavaScript</span>
-            <span class="skill-item">Python</span>
-            <span class="skill-item">TypeScript</span>
-            <span class="skill-item">Kotlin</span>
-            <span class="skill-item">HTML5</span>
-            <span class="skill-item">CSS3</span>
-          </div>
-        </div>
-        <div class="skill-category">
-          <h3>Frameworks</h3>
-          <div class="skill-items">
-            <span class="skill-item">React.js</span>
-            <span class="skill-item">Express.js</span>
-            <span class="skill-item">Spring Boot</span>
-            <span class="skill-item">Node.js</span>
-            <span class="skill-item">Tailwind CSS</span>
-            <span class="skill-item">Hibernate</span>
-            <span class="skill-item">JavaFX</span>
-          </div>
-        </div>
-        <div class="skill-category">
-          <h3>Databases</h3>
-          <div class="skill-items">
-            <span class="skill-item">MongoDB</span>
-            <span class="skill-item">MySQL</span>
-            <span class="skill-item">SQLite</span>
-          </div>
-        </div>
-        <div class="skill-category">
-          <h3>Tools</h3>
-          <div class="skill-items">
-            <span class="skill-item">Git & GitHub</span>
-            <span class="skill-item">Figma</span>
-            <span class="skill-item">Postman</span>
-            <span class="skill-item">Power BI</span>
-            <span class="skill-item">Selenium</span>
-            <span class="skill-item">Android Studio</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+    <!-- Floating Particles -->
+    <div class="particles" id="particles"></div>
 
-  <!-- Projects Section -->
-  <section id="projects" class="section">
-    <div class="container">
-      <div class="section-header">
-        <h2 class="section-title">Featured Projects</h2>
-        <p class="section-subtitle">A glimpse of what I’ve built</p>
-      </div>
-      <div class="projects-grid">
-        <div class="project-card">
-          <h3>COCONUT Platform</h3>
-          <p>AI-powered platform for coconut farmers with disease detection and analytics.</p>
-          <p class="project-tech">MongoDB · React.js · Node.js · AI/ML</p>
-          <div class="project-links">
-            <a href="https://github.com/kavindu-denuwan/coconut-platform" target="_blank" class="project-link"><i class="fab fa-github"></i></a>
-          </div>
-        </div>
-        <div class="project-card">
-          <h3>Markit - Smart Attendance</h3>
-          <p>AI-powered attendance management with predictive insights.</p>
-          <p class="project-tech">TypeScript · MongoDB · Express.js · JWT</p>
-          <div class="project-links">
-            <a href="https://github.com/kavindu-denuwan/markit-attendance" target="_blank" class="project-link"><i class="fab fa-github"></i></a>
-          </div>
-        </div>
-        <div class="project-card">
-          <h3>ExamHub - Smart Assessment</h3>
-          <p>Revolutionary exam portal with adaptive testing & automated grading.</p>
-          <p class="project-tech">HTML5 · CSS3 · JavaScript · PWA</p>
-          <div class="project-links">
-            <a href="https://github.com/kavindu-denuwan/examhub" target="_blank" class="project-link"><i class="fab fa-github"></i></a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+    <header id="header">
+        <nav>
+            <div class="logo">KD</div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home" class="nav-link active" data-text="home">home</a></li>
+                <li><a href="#about" class="nav-link" data-text="about">about</a></li>
+                <li><a href="#skills" class="nav-link" data-text="skills">skills</a></li>
+                <li><a href="#projects" class="nav-link" data-text="projects">projects</a></li>
+                <li><a href="#experience" class="nav-link" data-text="experience">experience</a></li>
+                <li><a href="#contact" class="nav-link" data-text="contact">contact</a></li>
+            </ul>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+    </header>
 
-  <!-- Contact Section -->
-  <section id="contact" class="section contact">
-    <div class="container">
-      <div class="section-header">
-        <h2 class="section-title">Let’s Connect</h2>
-        <p class="section-subtitle">I’d love to hear from you</p>
-      </div>
-      <div class="contact-grid">
-        <div class="contact-info">
-          <p><i class="fas fa-envelope"></i> kavindudenuwan2002@gmail.com</p>
-          <p><i class="fas fa-phone"></i> +94 70 2456 870</p>
-          <p><i class="fas fa-map-marker-alt"></i> Malabe, Sri Lanka</p>
+    <main>
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <div class="hero-greeting">Hello, I'm</div>
+                    <h1 class="hero-title">Kavindu Denuwan</h1>
+                    <p class="hero-subtitle">Full-Stack Developer & UI/UX Designer</p>
+                    <p class="hero-description">
+                        Transforming ideas into powerful digital experiences with cutting-edge technologies and creative design solutions.
+                    </p>
+                    
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">2+</span>
+                            <span class="stat-label">Years Experience</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">21+</span>
+                            <span class="stat-label">Projects Completed</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">8+</span>
+                            <span class="stat-label">Technologies Mastered</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">150+</span>
+                            <span class="stat-label">GitHub Commits</span>
+                        </div>
+                    </div>
+                    
+                    <div class="cta-buttons">
+                        <a href="#contact" class="btn btn-primary">
+                            <i class="fas fa-rocket"></i>
+                            Hire Me Now
+                        </a>
+                        <a href="#projects" class="btn btn-secondary">
+                            <i class="fas fa-code"></i>
+                            View Projects
+                        </a>
+                        <a href="#" class="btn btn-download" id="downloadCV">
+                            <i class="fas fa-download"></i>
+                            Download CV
+                        </a>
+                    </div>
+                    <div class="social-links">
+                        <a href="mailto:kavindudenuwan2002@gmail.com" class="social-link" title="Email">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                        <a href="tel:+94702456870" class="social-link" title="Phone">
+                            <i class="fas fa-phone"></i>
+                        </a>
+                        <a href="https://linkedin.com/in/kavindu-denuwan" class="social-link" title="LinkedIn" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="https://github.com/kavindu-denuwan" class="social-link" title="GitHub" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="code-window hover-tilt">
+                        <div class="window-controls">
+                            <div class="window-control control-close"></div>
+                            <div class="window-control control-minimize"></div>
+                            <div class="window-control control-maximize"></div>
+                        </div>
+                        <div class="window-title">~ developer.js</div>
+                        <div class="code-content">
+                            <div class="code-line">
+                                <span class="line-number">1</span>
+                                <span class="code-keyword">const</span> <span class="code-function">developer</span> = {
+                            </div>
+                            <div class="code-line">
+                                <span class="line-number">2</span>
+                                &nbsp;&nbsp;name: <span class="code-string">"Kavindu Denuwan"</span>,
+                            </div>
+                            <div class="code-line">
+                                <span class="line-number">3</span>
+                                &nbsp;&nbsp;skills: <span class="code-string">"Full-Stack + UI/UX"</span>,
+                            </div>
+                            <div class="code-line">
+                                <span class="line-number">4</span>
+                                &nbsp;&nbsp;passion: <span class="code-string">"Building Digital Solutions"</span>,
+                            </div>
+                            <div class="code-line">
+                                <span class="line-number">5</span>
+                                &nbsp;&nbsp;available: <span class="code-keyword">true</span>
+                            </div>
+                            <div class="code-line">
+                                <span class="line-number">6</span>
+                                }; <span class="code-comment">// Ready to innovate!</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="section about">
+            <div class="container">
+                <div class="section-header scroll-reveal">
+                    <h2 class="section-title">About Me</h2>
+                    <p class="section-subtitle">Passionate developer crafting digital experiences</p>
+                </div>
+                
+                <div class="about-content">
+                    <div class="about-text scroll-reveal">
+                        <p>
+                            I'm a final-year BSc (Hons) Information Technology undergraduate at SLIIT with a specialization in full-stack development, UI/UX design, and data analytics. My journey in technology is driven by a passion for creating innovative solutions that solve real-world problems.
+                        </p>
+                        <p>
+                            With expertise in the MERN stack, Spring Boot, and modern design principles, I bridge the gap between technical functionality and user experience. I believe that great software isn't just about clean code—it's about understanding user needs and crafting intuitive interfaces that make technology accessible to everyone.
+                        </p>
+                        <p>
+                            When I'm not coding, you'll find me exploring new technologies, contributing to open-source projects, or mentoring fellow developers. I'm always eager to take on new challenges and collaborate with teams that share my vision for innovation.
+                        </p>
+                    </div>
+                    <div class="about-highlights scroll-reveal">
+                        <div class="highlight-item">
+                            <span class="highlight-number">4.5/5</span>
+                            <span class="highlight-label">Academic Performance</span>
+                        </div>
+                        <div class="highlight-item">
+                            <span class="highlight-number">5+</span>
+                            <span class="highlight-label">Certifications</span>
+                        </div>
+                        <div class="highlight-item">
+                            <span class="highlight-number">100%</span>
+                            <span class="highlight-label">Project Success Rate</span>
+                        </div>
+                        <div class="highlight-item">
+                            <span class="highlight-number">24/7</span>
+                            <span class="highlight-label">Availability</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="section skills">
+            <div class="container">
+                <div class="section-header scroll-reveal">
+                    <h2 class="section-title">Technical Arsenal</h2>
+                    <p class="section-subtitle">Cutting-edge technologies and frameworks I master</p>
+                </div>
+                
+                <div class="skills-container">
+                    <div class="skill-category scroll-reveal">
+                        <div class="skill-header">
+                            <div class="skill-icon">
+                                <i class="fas fa-code"></i>
+                            </div>
+                            <h3>Programming Languages</h3>
+                        </div>
+                        <div class="skill-items">
+                            <div class="skill-item"><span>Java</span></div>
+                            <div class="skill-item"><span>JavaScript</span></div>
+                            <div class="skill-item"><span>Python</span></div>
+                            <div class="skill-item"><span>TypeScript</span></div>
+                            <div class="skill-item"><span>Kotlin</span></div>
+                            <div class="skill-item"><span>HTML5</span></div>
+                            <div class="skill-item"><span>CSS3</span></div>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category scroll-reveal">
+                        <div class="skill-header">
+                            <div class="skill-icon">
+                                <i class="fas fa-layer-group"></i>
+                            </div>
+                            <h3>Frameworks & Libraries</h3>
+                        </div>
+                        <div class="skill-items">
+                            <div class="skill-item"><span>React.js</span></div>
+                            <div class="skill-item"><span>Express.js</span></div>
+                            <div class="skill-item"><span>Spring Boot</span></div>
+                            <div class="skill-item"><span>Node.js</span></div>
+                            <div class="skill-item"><span>Tailwind CSS</span></div>
+                            <div class="skill-item"><span>JavaFX</span></div>
+                            <div class="skill-item"><span>Hibernate</span></div>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category scroll-reveal">
+                        <div class="skill-header">
+                            <div class="skill-icon">
+                                <i class="fas fa-database"></i>
+                            </div>
+                            <h3>Databases</h3>
+                        </div>
+                        <div class="skill-items">
+                            <div class="skill-item"><span>MongoDB</span></div>
+                            <div class="skill-item"><span>MySQL</span></div>
+                            <div class="skill-item"><span>SQLite</span></div>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category scroll-reveal">
+                        <div class="skill-header">
+                            <div class="skill-icon">
+                                <i class="fas fa-tools"></i>
+                            </div>
+                            <h3>Tools & Technologies</h3>
+                        </div>
+                        <div class="skill-items">
+                            <div class="skill-item"><span>Git</span></div>
+                            <div class="skill-item"><span>GitHub</span></div>
+                            <div class="skill-item"><span>Figma</span></div>
+                            <div class="skill-item"><span>Postman</span></div>
+                            <div class="skill-item"><span>Power BI</span></div>
+                            <div class="skill-item"><span>Selenium</span></div>
+                            <div class="skill-item"><span>Android Studio</span></div>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category scroll-reveal">
+                        <div class="skill-header">
+                            <div class="skill-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <h3>Leadership & Soft Skills</h3>
+                        </div>
+                        <div class="skill-items">
+                            <div class="skill-item"><span>Team Leadership</span></div>
+                            <div class="skill-item"><span>Project Management</span></div>
+                            <div class="skill-item"><span>Technical Documentation</span></div>
+                            <div class="skill-item"><span>Software Testing</span></div>
+                            <div class="skill-item"><span>Decision Making</span></div>
+                            <div class="skill-item"><span>Team Collaboration</span></div>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category scroll-reveal">
+                        <div class="skill-header">
+                            <div class="skill-icon">
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <h3>Specializations</h3>
+                        </div>
+                        <div class="skill-items">
+                            <div class="skill-item"><span>Full-Stack Development</span></div>
+                            <div class="skill-item"><span>MERN Stack</span></div>
+                            <div class="skill-item"><span>UI/UX Design</span></div>
+                            <div class="skill-item"><span>Data Analytics</span></div>
+                            <div class="skill-item"><span>Mobile Development</span></div>
+                            <div class="skill-item"><span>Web Development</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="section">
+            <div class="container">
+                <div class="section-header scroll-reveal">
+                    <h2 class="section-title">Featured Projects</h2>
+                    <p class="section-subtitle">Innovative solutions showcasing technical excellence</p>
+                </div>
+                
+                <div class="projects-grid">
+                    <div class="project-card scroll-reveal">
+                        <div class="project-screenshots">
+                            <div class="screenshot-placeholder">
+                                <i class="fas fa-seedling"></i>
+                            </div>
+                            <div class="screenshot-nav">
+                                <div class="screenshot-dot active"></div>
+                                <div class="screenshot-dot"></div>
+                                <div class="screenshot-dot"></div>
+                            </div>
+                        </div>
+                        <div class="project-header">
+                            <h3 class="project-title">
+                                <div class="project-title-text">
+                                    <i class="fas fa-seedling"></i>
+                                    COCONUT Platform
+                                </div>
+                                <div class="project-links">
+                                    <a href="https://github.com/kavindu-denuwan/coconut-platform" class="project-link" title="View Code" target="_blank" rel="noopener noreferrer">
+                                        <i class="fab fa-github"></i>
+                                    </a>
+                                    <a href="#" class="project-link" title="Live Demo">
+                                        <i class="fas fa-external-link-alt"></i>
+                                    </a>
+                                </div>
+                            </h3>
+                            <p class="project-period"><i class="fas fa-calendar"></i> Feb 2025 - May 2025</p>
+                            <p class="project-description">
+                                AI-powered web platform for Sri Lankan coconut farmers with disease detection and pandemic tracking capabilities.
+                            </p>
+                            <div class="project-tech">
+                                <span class="tech-tag">MongoDB</span>
+                                <span class="tech-tag">React.js</span>
+                                <span class="tech-tag">Node.js</span>
+                                <span class="tech-tag">AI/ML</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card scroll-reveal">
+                        <div class="project-screenshots">
+                            <div class="screenshot-placeholder">
+                                <i class="fas fa-user-check"></i>
+                            </div>
+                            <div class="screenshot-nav">
+                                <div class="screenshot-dot active"></div>
+                                <div class="screenshot-dot"></div>
+                                <div class="screenshot-dot"></div>
+                            </div>
+                        </div>
+                        <div class="project-header">
+                            <h3 class="project-title">
+                                <div class="project-title-text">
+                                    <i class="fas fa-user-check"></i>
+                                    Markit - Smart Attendance
+                                </div>
+                                <div class="project-links">
+                                    <a href="https://github.com/kavindu-denuwan/markit-attendance" class="project-link" title="View Code" target="_blank" rel="noopener noreferrer">
+                                        <i class="fab fa-github"></i>
+                                    </a>
+                                    <a href="#" class="project-link" title="Live Demo">
+                                        <i class="fas fa-external-link-alt"></i>
+                                    </a>
+                                </div>
+                            </h3>
+                            <p class="project-period"><i class="fas fa-calendar"></i> Aug 2025 - Present</p>
+                            <p class="project-description">
+                                Next-generation attendance management system with AI-powered analytics and predictive insights.
+                            </p>
+                            <div class="project-tech">
+                                <span class="tech-tag">TypeScript</span>
+                                <span class="tech-tag">MongoDB</span>
+                                <span class="tech-tag">JWT Auth</span>
+                                <span class="tech-tag">Express.js</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card scroll-reveal">
+                        <div class="project-screenshots">
+                            <div class="screenshot-placeholder">
+                                <i class="fas fa-book-open"></i>
+                            </div>
+                            <div class="screenshot-nav">
+                                <div class="screenshot-dot active"></div>
+                                <div class="screenshot-dot"></div>
+                                <div class="screenshot-dot"></div>
+                            </div>
+                        </div>
+                        <div class="project-header">
+                            <h3 class="project-title">
+                                <div class="project-title-text">
+                                    <i class="fas fa-book-open"></i>
+                                    History Lovers Platform
+                                </div>
+                                <div class="project-links">
+                                    <a href="https://github.com/kavindu-denuwan/history-platform" class="project-link" title="View Code" target="_blank" rel="noopener noreferrer">
+                                        <i class="fab fa-github"></i>
+                                    </a>
+                                    <a href="#" class="project-link" title="Live Demo">
+                                        <i class="fas fa-external-link-alt"></i>
+                                    </a>
+                                </div>
+                            </h3>
+                            <p class="project-period"><i class="fas fa-calendar"></i> Apr 2025 - Jun 2025</p>
+                            <p class="project-description">
+                                Interactive social learning platform with gamified experiences and comprehensive video content management.
+                            </p>
+                            <div class="project-tech">
+                                <span class="tech-tag">React.js</span>
+                                <span class="tech-tag">Spring Boot</span>
+                                <span class="tech-tag">MySQL</span>
+                                <span class="tech-tag">Hibernate</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card scroll-reveal">
+                        <div class="project-screenshots">
+                            <div class="screenshot-placeholder">
+                                <i class="fas fa-ship"></i>
+                            </div>
+                            <div class="screenshot-nav">
+                                <div class="screenshot-dot active"></div>
+                                <div class="screenshot-dot"></div>
+                                <div class="screenshot-dot"></div>
+                            </div>
+                        </div>
+                        <div class="project-header">
+                            <h3 class="project-title">
+                                <div class="project-title-text">
+                                    <i class="fas fa-ship"></i>
+                                    NAVIGA - Maritime App
+                                </div>
+                                <div class="project-links">
+                                    <a href="https://github.com/kavindu-denuwan/naviga-ui" class="project-link" title="View Code" target="_blank" rel="noopener noreferrer">
+                                        <i class="fab fa-github"></i>
+                                    </a>
+                                    <a href="#" class="project-link" title="View Design">
+                                        <i class="fas fa-palette"></i>
+                                    </a>
+                                </div>
+                            </h3>
+                            <p class="project-period"><i class="fas fa-calendar"></i> Feb 2024 - Mar 2024</p>
+                            <p class="project-description">
+                                Cutting-edge maritime navigation app design with real-time vessel tracking and emergency protocols.
+                            </p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Figma</span>
+                                <span class="tech-tag">UI/UX</span>
+                                <span class="tech-tag">Mobile Design</span>
+                                <span class="tech-tag">Prototyping</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card scroll-reveal">
+                        <div class="project-screenshots">
+                            <div class="screenshot-placeholder">
+                                <i class="fas fa-building"></i>
+                            </div>
+                            <div class="screenshot-nav">
+                                <div class="screenshot-dot active"></div>
+                                <div class="screenshot-dot"></div>
+                                <div class="screenshot-dot"></div>
+                            </div>
+                        </div>
+                        <div class="project-header">
+                            <h3 class="project-title">
+                                <div class="project-title-text">
+                                    <i class="fas fa-building"></i>
+                                    Construction Management Pro
+                                </div>
+                                <div class="project-links">
+                                    <a href="https://github.com/kavindu-denuwan/construction-management" class="project-link" title="View Code" target="_blank" rel="noopener noreferrer">
+                                        <i class="fab fa-github"></i>
+                                    </a>
+                                    <a href="#" class="project-link" title="Live Demo">
+                                        <i class="fas fa-external-link-alt"></i>
+                                    </a>
+                                </div>
+                            </h3>
+                            <p class="project-period"><i class="fas fa-calendar"></i> Feb 2024 - Jun 2024</p>
+                            <p class="project-description">
+                                Enterprise-grade construction management system with advanced client relationship management.
+                            </p>
+                            <div class="project-tech">
+                                <span class="tech-tag">MERN Stack</span>
+                                <span class="tech-tag">JWT Auth</span>
+                                <span class="tech-tag">MongoDB</span>
+                                <span class="tech-tag">React.js</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card scroll-reveal">
+                        <div class="project-screenshots">
+                            <div class="screenshot-placeholder">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <div class="screenshot-nav">
+                                <div class="screenshot-dot active"></div>
+                                <div class="screenshot-dot"></div>
+                                <div class="screenshot-dot"></div>
+                            </div>
+                        </div>
+                        <div class="project-header">
+                            <h3 class="project-title">
+                                <div class="project-title-text">
+                                    <i class="fas fa-graduation-cap"></i>
+                                    ExamHub - Smart Assessment
+                                </div>
+                                <div class="project-links">
+                                    <a href="https://github.com/kavindu-denuwan/examhub" class="project-link" title="View Code" target="_blank" rel="noopener noreferrer">
+                                        <i class="fab fa-github"></i>
+                                    </a>
+                                    <a href="#" class="project-link" title="Live Demo">
+                                        <i class="fas fa-external-link-alt"></i>
+                                    </a>
+                                </div>
+                            </h3>
+                            <p class="project-period"><i class="fas fa-calendar"></i> Jul 2025 - Aug 2025</p>
+                            <p class="project-description">
+                                Revolutionary examination platform with adaptive testing algorithms and automated grading system.
+                            </p>
+                            <div class="project-tech">
+                                <span class="tech-tag">HTML5</span>
+                                <span class="tech-tag">CSS3</span>
+                                <span class="tech-tag">JavaScript</span>
+                                <span class="tech-tag">PWA</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="section experience">
+            <div class="container">
+                <div class="section-header scroll-reveal">
+                    <h2 class="section-title">Experience & Education</h2>
+                    <p class="section-subtitle">My journey in technology and continuous learning</p>
+                </div>
+                
+                <div class="timeline">
+                    <div class="timeline-item scroll-reveal">
+                        <div class="timeline-content">
+                            <div class="timeline-marker"></div>
+                            <div class="timeline-date">2022 - Present</div>
+                            <h3 class="timeline-title">BSc (Hons) Information Technology</h3>
+                            <p class="timeline-company">Sri Lanka Institute of Information Technology (SLIIT)</p>
+                            <p class="timeline-description">
+                                Specializing in Information Technology with focus on full-stack development, data analytics, and software engineering principles. Maintaining high academic standards while actively participating in practical projects.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item scroll-reveal">
+                        <div class="timeline-content">
+                            <div class="timeline-marker"></div>
+                            <div class="timeline-date">2024 - 2025</div>
+                            <h3 class="timeline-title">Full-Stack Developer</h3>
+                            <p class="timeline-company">Multiple Projects & Freelance</p>
+                            <p class="timeline-description">
+                                Led development of various web applications using MERN stack and Spring Boot. Collaborated with teams to deliver scalable solutions, focusing on user experience and performance optimization.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item scroll-reveal">
+                        <div class="timeline-content">
+                            <div class="timeline-marker"></div>
+                            <div class="timeline-date">2023 - 2024</div>
+                            <h3 class="timeline-title">UI/UX Designer</h3>
+                            <p class="timeline-company">Design Projects & Prototyping</p>
+                            <p class="timeline-description">
+                                Created intuitive user interfaces and engaging user experiences for mobile and web applications. Utilized Figma for design systems and prototyping, focusing on accessibility and usability.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item scroll-reveal">
+                        <div class="timeline-content">
+                            <div class="timeline-marker"></div>
+                            <div class="timeline-date">2025</div>
+                            <h3 class="timeline-title">Multiple Certifications</h3>
+                            <p class="timeline-company">University of Moratuwa</p>
+                            <p class="timeline-description">
+                                Completed certifications in Server-Side Programming, Front-End Web Development, Python Programming, and Web Design, demonstrating commitment to continuous learning and skill development.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section contact">
+            <div class="container">
+                <div class="section-header scroll-reveal">
+                    <h2 class="section-title">Let's Build Something Amazing</h2>
+                    <p class="section-subtitle">Ready to transform your vision into reality? Let's connect!</p>
+                </div>
+                
+                <div class="contact-grid">
+                    <div class="contact-info scroll-reveal">
+                        <h3 class="contact-title">Get In Touch</h3>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>Email</h4>
+                                <p>kavindudenuwan2002@gmail.com</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>Phone</h4>
+                                <p>+94 70 2456 870</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>Location</h4>
+                                <p>Malabe, Sri Lanka</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>Availability</h4>
+                                <p>Open for opportunities</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-form scroll-reveal">
+                        <h3 class="form-title">Send a Message</h3>
+                        <form id="contactForm">
+                            <div class="form-group">
+                                <label for="name" class="form-label">Your Name</label>
+                                <input type="text" id="name" name="name" class="form-input" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email" class="form-label">Your Email</label>
+                                <input type="email" id="email" name="email" class="form-input" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="subject" class="form-label">Subject</label>
+                                <input type="text" id="subject" name="subject" class="form-input" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="message" class="form-label">Message</label>
+                                <textarea id="message" name="message" class="form-textarea" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-paper-plane"></i>
+                                Send Message
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p class="footer-text">
+                Made with <span class="footer-love">❤️</span> by Kavindu Denuwan
+            </p>
+            <p>&copy; 2025 All rights reserved.</p>
         </div>
-        <form id="contactForm" class="contact-form">
-          <input type="text" name="name" placeholder="Your Name" required />
-          <input type="email" name="email" placeholder="Your Email" required />
-          <textarea name="message" placeholder="Message" required></textarea>
-          <button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Send</button>
-        </form>
-      </div>
-    </div>
-  </section>
+    </footer>
 
-  <!-- Footer -->
-  <footer>
-    <p>© 2025 Kavindu Denuwan. Built with ❤️</p>
-  </footer>
+    <script>
+        // Create CV data for download
+        const cvData = `P.M.Kavindu Denuwan
+Full-Stack Developer | MERN Stack | UI/UX Designer
 
-  <!-- jsPDF for CV Download -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-  <script>
-    document.getElementById('downloadCV').addEventListener('click', (e) => {
-      e.preventDefault();
-      const { jsPDF } = window.jspdf;
-      const doc = new jsPDF();
-      doc.setFontSize(14);
-      doc.text("Kavindu Denuwan - CV", 20, 20);
-      doc.setFontSize(11);
-      doc.text("Full-Stack Developer | MERN Stack | UI/UX Designer", 20, 30);
-      doc.text("Email: kavindudenuwan2002@gmail.com", 20, 40);
-      doc.text("Phone: +94 70 2456 870", 20, 50);
-      doc.text("LinkedIn: linkedin.com/in/kavindu-denuwan", 20, 60);
-      doc.text("GitHub: github.com/kavindu-denuwan", 20, 70);
-      doc.save("Kavindu_Denuwan_CV.pdf");
-    });
+CONTACT INFORMATION
+Email: kavindudenuwan2002@gmail.com
+Phone: +94 70 2456 870
+Location: Malabe, Sri Lanka
+LinkedIn: linkedin.com/in/kavindu-denuwan
+GitHub: github.com/kavindu-denuwan
 
-    document.getElementById('contactForm').addEventListener('submit', function (e) {
-      e.preventDefault();
-      alert('Thank you! Your message will be sent via email.');
-    });
-  </script>
+PROFESSIONAL SUMMARY
+Final-year BSc (Hons) in Information Technology undergraduate at SLIIT, specializing in full-stack
+development (MERN stack / Spring Boot), UI/UX design, and data analytics. Skilled in developing
+scalable applications, designing intuitive user experiences, and applying analytical insights to solve
+problems. Eager to contribute technical expertise, creativity, and a results-driven mindset to
+software engineering, UI/UX, business analysis, or data analytics roles.
+
+EDUCATION
+Sri Lanka Institute of Information Technology (SLIIT) - July 2022 – Oct 2026
+BSc (Hons) in Information Technology, Specialization in Information Technology
+
+St.Servatius College - Matara - 2008 - 2021(2022)
+Completed Advance Level - 2021(2022) in Physical Science: CSS for ICT, Combined Mathematics and Physics
+
+TECHNICAL & SOFT SKILLS
+Programming Languages: Java, HTML, JavaScript, CSS, Python, Kotlin
+Frameworks & Technologies: Express.js, Hibernate, React.js, JavaFX, Spring Boot, Tailwind CSS
+Databases: MySQL, MongoDB, SQLite
+Tools & Version Control: Git, Selenium, GitHub, Figma, Postman, Power BI
+Soft Skills: Team Collaboration, Software Testing, Technical Documentation, Project Management, Decision Making, Leadership
+
+CERTIFICATIONS
+- Server-Side Programming - University Of Moratuwa (Verification Code: 7xDy3WIA7A)
+- Front-End Web Development - University Of Moratuwa (Verification Code: wsHbDvu5Nv)
+- Python Programming - University Of Moratuwa (Verification Code: FThsWIQi8v)
+- Python for Beginners - University Of Moratuwa (Verification Code: P7CVI17S5i)
+- Web Design for Beginners - University Of Moratuwa (Verification Code: 2FQY3yOsbb)
+
+PROJECTS
+COCONUT Platform | Group Project (Feb 2025 - May 2025)
+- Comprehensive web platform for Sri Lankan coconut farmers with AI-powered disease detection
+- Led development of CoconutGuard SL module for monitoring Weligama Wilt Disease pandemic
+- Technologies: MongoDB, Express.js, React.js, Node.js, Tailwind CSS
+
+Markit - Student Attendance Management System | Individual Project (Aug 2025 - Present)
+- Next-generation attendance management system with AI-powered analytics
+- Features secure JWT authentication and predictive attendance insights
+- Technologies: MongoDB, Express.js, TypeScript, JWT Authentication, Node.js, Tailwind CSS
+
+History Lovers Platform | Group Project (Apr 2025 - Jun 2025)
+- Interactive social learning platform for history enthusiasts with gamified experiences
+- Built advanced content management system with video streaming and progress tracking
+- Technologies: React.js, Spring Boot, Hibernate, MySQL, Tailwind CSS
+
+NAVIGA - Maritime Intelligence | Individual Project (Feb 2024 - Mar 2024)
+- Cutting-edge maritime navigation app design with real-time vessel tracking
+- Created immersive UI/UX with advanced data visualization and emergency protocols
+- Technologies: Figma, UI/UX Design, Mobile Design, User Research
+
+Construction Management Pro | Group Project (Feb 2024 - Jun 2024)
+- Enterprise-grade Construction Management System with client relationship management
+- Engineered scalable admin dashboards with real-time analytics
+- Technologies: MongoDB, Express.js, React.js, JWT Authentication, Node.js
+
+ExamHub - Smart Assessment Portal | Individual Project (Jul 2025 - Aug 2025)
+- Revolutionary examination platform with adaptive testing algorithms
+- Features automated grading and personalized learning analytics
+- Technologies: HTML5, CSS3, JavaScript, Progressive Web App`;
+
+        // Download CV function
+        function downloadCV() {
+            const blob = new Blob([cvData], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'Kavindu_Denuwan_CV.txt';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        // Loading animation
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('loadingOverlay').classList.add('fade-out');
+            }, 1500);
+        });
+
+        // Floating particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 50;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 8 + 's';
+                particle.style.animationDuration = (Math.random() * 3 + 5) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Scroll animations
+        function revealOnScroll() {
+            const reveals = document.querySelectorAll('.scroll-reveal');
+            
+            for (let i = 0; i < reveals.length; i++) {
+                const windowHeight = window.innerHeight;
+                const elementTop = reveals[i].getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add('revealed');
+                }
+            }
+        }
+
+        // Header scroll effect
+        function handleScroll() {
+            const header = document.getElementById('header');
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            if (scrollTop > 100) {
+                header.classList.add('header-scrolled');
+            } else {
+                header.classList.remove('header-scrolled');
+            }
+            
+            revealOnScroll();
+        }
+
+        // Navigation
+        function setActiveNav() {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const navLinks = document.getElementById('navLinks');
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            
+            navLinks.classList.toggle('active');
+            
+            const icon = mobileMenuBtn.querySelector('i');
+            if (navLinks.classList.contains('active')) {
+                icon.className = 'fas fa-times';
+            } else {
+                icon.className = 'fas fa-bars';
+            }
+        }
+
+        // Smooth scrolling for navigation links
+        function smoothScroll(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            const targetSection = document.querySelector(targetId);
+            
+            if (targetSection) {
+                targetSection.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+                
+                const navLinks = document.getElementById('navLinks');
+                const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+                if (navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                    mobileMenuBtn.querySelector('i').className = 'fas fa-bars';
+                }
+            }
+        }
+
+        // Contact form handling
+        function handleContactForm(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const name = formData.get('name');
+            const email = formData.get('email');
+            const subject = formData.get('subject');
+            const message = formData.get('message');
+            
+            const mailtoLink = `mailto:kavindudenuwan2002@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`)}`;
+            
+            window.location.href = mailtoLink;
+            this.reset();
+            alert('Thank you for your message! Your email client should open shortly.');
+        }
+
+        // Project screenshot slideshow
+        function initializeProjectSlideshow() {
+            const projectCards = document.querySelectorAll('.project-card');
+            
+            projectCards.forEach(card => {
+                const dots = card.querySelectorAll('.screenshot-dot');
+                let currentSlide = 0;
+                
+                dots.forEach((dot, index) => {
+                    dot.addEventListener('click', () => {
+                        dots[currentSlide].classList.remove('active');
+                        currentSlide = index;
+                        dots[currentSlide].classList.add('active');
+                    });
+                });
+                
+                setInterval(() => {
+                    dots[currentSlide].classList.remove('active');
+                    currentSlide = (currentSlide + 1) % dots.length;
+                    dots[currentSlide].classList.add('active');
+                }, 5000);
+            });
+        }
+
+        // Initialize everything when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            createParticles();
+            initializeProjectSlideshow();
+            
+            window.addEventListener('scroll', handleScroll);
+            window.addEventListener('scroll', setActiveNav);
+            
+            document.getElementById('mobileMenuBtn').addEventListener('click', toggleMobileMenu);
+            
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', smoothScroll);
+            });
+            
+            document.getElementById('downloadCV').addEventListener('click', function(e) {
+                e.preventDefault();
+                downloadCV();
+            });
+            
+            document.getElementById('contactForm').addEventListener('submit', handleContactForm);
+            
+            handleScroll();
+            setActiveNav();
+            revealOnScroll();
+
+            // Animate stats numbers
+            function animateStats() {
+                const statNumbers = document.querySelectorAll('.stat-number');
+                
+                statNumbers.forEach(stat => {
+                    const finalNumber = stat.textContent;
+                    const numericValue = parseInt(finalNumber.replace(/\D/g, ''));
+                    const suffix = finalNumber.replace(/[\d\s]/g, '');
+                    
+                    let current = 0;
+                    const increment = numericValue / 30;
+                    
+                    const counter = setInterval(() => {
+                        current += increment;
+                        if (current >= numericValue) {
+                            stat.textContent = finalNumber;
+                            clearInterval(counter);
+                        } else {
+                            stat.textContent = Math.floor(current) + suffix;
+                        }
+                    }, 50);
+                });
+            }
+            
+            const statsSection = document.querySelector('.hero-stats');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateStats();
+                        observer.unobserve(entry.target);
+                    }
+                });
+            });
+            
+            observer.observe(statsSection);
+
+            // Add random colors to particles
+            const particles = document.querySelectorAll('.particle');
+            const colors = ['#00F5FF', '#9333EA', '#FF6B6B', '#10B981'];
+            
+            particles.forEach(particle => {
+                const randomColor = colors[Math.floor(Math.random() * colors.length)];
+                particle.style.backgroundColor = randomColor;
+                particle.style.boxShadow = `0 0 10px ${randomColor}`;
+            });
+        });
+
+        // Easter egg - Konami code
+        let konamiCode = [];
+        const konamiSequence = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65];
+        
+        document.addEventListener('keydown', function(e) {
+            konamiCode.push(e.keyCode);
+            
+            if (konamiCode.length > konamiSequence.length) {
+                konamiCode.shift();
+            }
+            
+            if (konamiCode.join(',') === konamiSequence.join(',')) {
+                document.body.style.filter = 'hue-rotate(180deg)';
+                setTimeout(() => {
+                    document.body.style.filter = '';
+                }, 5000);
+                
+                const message = document.createElement('div');
+                message.textContent = 'You found the easter egg! 🚀';
+                message.style.cssText = `
+                    position: fixed;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    background: var(--gradient-primary);
+                    color: white;
+                    padding: 2rem;
+                    border-radius: 16px;
+                    font-size: 1.5rem;
+                    font-weight: bold;
+                    z-index: 10000;
+                    box-shadow: var(--shadow-glow);
+                    animation: fadeInUp 0.5s ease;
+                `;
+                
+                document.body.appendChild(message);
+                
+                setTimeout(() => {
+                    message.remove();
+                }, 3000);
+                
+                konamiCode = [];
+            }
+        });
+    </script>
 </body>
 </html>
