@@ -67,11 +67,9 @@
                             View Projects
                         </a>
                         <a href="#" onclick="downloadCV()" class="btn btn-download">
-    <i class="fas fa-download"></i>
-    Download CV
-</a>
-
-
+                            <i class="fas fa-download"></i>
+                            Download CV
+                        </a>
                     </div>
                     <div class="social-links">
                         <a href="mailto:kavindudenuwan2002@gmail.com" class="social-link" title="Email">
@@ -80,10 +78,10 @@
                         <a href="tel:+94702456870" class="social-link" title="Phone">
                             <i class="fas fa-phone"></i>
                         </a>
-                        <a href="https://linkedin.com/in/kavindu-denuwan" class="social-link" title="LinkedIn" target="_blank" rel="noopener noreferrer">
+                        <a href="https://www.linkedin.com/in/kavindu-denuwan-21a876338" class="social-link" title="LinkedIn" target="_blank" rel="noopener noreferrer">
                             <i class="fab fa-linkedin"></i>
                         </a>
-                        <a href="https://github.com/kavindu-denuwan" class="social-link" title="GitHub" target="_blank" rel="noopener noreferrer">
+                        <a href="https://github.com/PMKDenuwan" class="social-link" title="GitHub" target="_blank" rel="noopener noreferrer">
                             <i class="fab fa-github"></i>
                         </a>
                     </div>
@@ -429,13 +427,16 @@
 
                     <div class="project-card scroll-reveal">
                         <div class="project-screenshots">
-                            <div class="screenshot-placeholder">
-                                <i class="fas fa-ship"></i>
+                            <div class="screenshot-container">
+                                <img src="./NAVIGA/NAVIGA-1.png" alt="NAVIGA App Home Screen" class="screenshot active">
+                                <img src="./NAVIGA/NAVIGA-3.png" alt="NAVIGA App Navigation" class="screenshot">
+                                <img src="./NAVIGA/NAVIGA-2.png" alt="NAVIGA App Tracking" class="screenshot">
                             </div>
+                            
                             <div class="screenshot-nav">
-                                <div class="screenshot-dot active"></div>
-                                <div class="screenshot-dot"></div>
-                                <div class="screenshot-dot"></div>
+                                <div class="screenshot-dot active" data-index="0"></div>
+                                <div class="screenshot-dot" data-index="1"></div>
+                                <div class="screenshot-dot" data-index="2"></div>
                             </div>
                         </div>
                         <div class="project-header">
@@ -445,12 +446,13 @@
                                     NAVIGA - Maritime App
                                 </div>
                                 <div class="project-links">
-                                    <a href="https://github.com/kavindu-denuwan/naviga-ui" class="project-link" title="View Code" target="_blank" rel="noopener noreferrer">
-                                        <i class="fab fa-github"></i>
-                                    </a>
-                                    <a href="#" class="project-link" title="View Design">
+                                    <a href="https://www.figma.com/design/OUmcV7iVdx4iIdLFORwDEN/NAVIGA---Boat-Tracking-System?node-id=0-1&p=f&t=H2R5smQOKLc9yKZ1-0" class="project-link" title="View Design">
                                         <i class="fas fa-palette"></i>
                                     </a>
+                                     <a href="https://www.figma.com/proto/OUmcV7iVdx4iIdLFORwDEN/NAVIGA---Boat-Tracking-System?node-id=129-1068&p=f&t=fJJhAehzCTeuLteN-0&scaling=scale-down&content-scaling=fixed&starting-point-node-id=129%3A1061&show-proto-sidebar=1" class="project-link" title="Live Demo">
+                                        <i class="fas fa-external-link-alt"></i>
+                                    </a>
+                                    
                                 </div>
                             </h3>
                             <p class="project-period"><i class="fas fa-calendar"></i> Feb 2024 - Mar 2024</p>
@@ -775,21 +777,14 @@
 
         // Download CV function
         function downloadCV() {
-    try {
-        const a = document.createElement('a');
-        a.href = './Kavindu_Denuwan_CV.pdf';
-        a.download = 'Kavindu_Denuwan_CV.pdf';
-        
-        // Check if the element was created successfully
-        if (a) {
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-        }
-    } catch (error) {
-        console.error('Error downloading CV:', error);
-        alert('Sorry, there was an error downloading the CV. Please try again.');
-    }
+    const a = document.createElement('a');
+    a.href = './Kavindu_Denuwan_CV.pdf';
+    a.download = 'Kavindu_Denuwan_CV.pdf';
+    a.style.display = 'none';
+    
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
 }
 
 
@@ -943,7 +938,30 @@
                 }, 5000);
             });
         }
-
+        
+        // Initialize screenshot navigation for all project cards
+document.addEventListener('DOMContentLoaded', function() {
+    const projectCards = document.querySelectorAll('.project-card');
+    
+    projectCards.forEach(card => {
+        const dots = card.querySelectorAll('.screenshot-dot');
+        const screenshots = card.querySelectorAll('.screenshot');
+        
+        dots.forEach(dot => {
+            dot.addEventListener('click', function() {
+                const index = parseInt(this.getAttribute('data-index'));
+                
+                // Remove active class from all dots and screenshots in this card
+                dots.forEach(d => d.classList.remove('active'));
+                screenshots.forEach(s => s.classList.remove('active'));
+                
+                // Add active class to clicked dot and corresponding screenshot
+                this.classList.add('active');
+                screenshots[index].classList.add('active');
+            });
+        });
+    });
+});
         // Initialize everything when DOM is loaded
         document.addEventListener('DOMContentLoaded', function() {
             createParticles();
@@ -2009,7 +2027,7 @@
         }
 
         .project-screenshots {
-            height: 200px;
+            height: 350px;
             position: relative;
             overflow: hidden;
             background: var(--gradient-secondary);
@@ -2031,8 +2049,8 @@
         }
 
         .screenshot-placeholder {
-            width: 100%;
-            height: 100%;
+            width: 80%;
+            height: 80%;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -2055,13 +2073,13 @@
             width: 8px;
             height: 8px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.5);
+            background: rgba(101, 158, 218, 0.5);
             cursor: pointer;
             transition: background 0.3s ease;
         }
 
         .screenshot-dot.active {
-            background: white;
+            background: rgb(5, 83, 239);
         }
 
         .project-header {
