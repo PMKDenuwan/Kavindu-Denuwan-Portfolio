@@ -66,10 +66,12 @@
                             <i class="fas fa-code"></i>
                             View Projects
                         </a>
-                        <a href="#" class="btn btn-download" id="downloadCV">
-                            <i class="fas fa-download"></i>
-                            Download CV
-                        </a>
+                        <a href="#" onclick="downloadCV()" class="btn btn-download">
+    <i class="fas fa-download"></i>
+    Download CV
+</a>
+
+
                     </div>
                     <div class="social-links">
                         <a href="mailto:kavindudenuwan2002@gmail.com" class="social-link" title="Email">
@@ -769,87 +771,28 @@
 
     <script>
         // Create CV data for download
-        const cvData = `P.M.Kavindu Denuwan
-Full-Stack Developer | MERN Stack | UI/UX Designer
 
-CONTACT INFORMATION
-Email: kavindudenuwan2002@gmail.com
-Phone: +94 70 2456 870
-Location: Malabe, Sri Lanka
-LinkedIn: linkedin.com/in/kavindu-denuwan
-GitHub: github.com/kavindu-denuwan
-
-PROFESSIONAL SUMMARY
-Final-year BSc (Hons) in Information Technology undergraduate at SLIIT, specializing in full-stack
-development (MERN stack / Spring Boot), UI/UX design, and data analytics. Skilled in developing
-scalable applications, designing intuitive user experiences, and applying analytical insights to solve
-problems. Eager to contribute technical expertise, creativity, and a results-driven mindset to
-software engineering, UI/UX, business analysis, or data analytics roles.
-
-EDUCATION
-Sri Lanka Institute of Information Technology (SLIIT) - July 2022 – Oct 2026
-BSc (Hons) in Information Technology, Specialization in Information Technology
-
-St.Servatius College - Matara - 2008 - 2021(2022)
-Completed Advance Level - 2021(2022) in Physical Science: CSS for ICT, Combined Mathematics and Physics
-
-TECHNICAL & SOFT SKILLS
-Programming Languages: Java, HTML, JavaScript, CSS, Python, Kotlin
-Frameworks & Technologies: Express.js, Hibernate, React.js, JavaFX, Spring Boot, Tailwind CSS
-Databases: MySQL, MongoDB, SQLite
-Tools & Version Control: Git, Selenium, GitHub, Figma, Postman, Power BI
-Soft Skills: Team Collaboration, Software Testing, Technical Documentation, Project Management, Decision Making, Leadership
-
-CERTIFICATIONS
-- Server-Side Programming - University Of Moratuwa (Verification Code: 7xDy3WIA7A)
-- Front-End Web Development - University Of Moratuwa (Verification Code: wsHbDvu5Nv)
-- Python Programming - University Of Moratuwa (Verification Code: FThsWIQi8v)
-- Python for Beginners - University Of Moratuwa (Verification Code: P7CVI17S5i)
-- Web Design for Beginners - University Of Moratuwa (Verification Code: 2FQY3yOsbb)
-
-PROJECTS
-COCONUT Platform | Group Project (Feb 2025 - May 2025)
-- Comprehensive web platform for Sri Lankan coconut farmers with AI-powered disease detection
-- Led development of CoconutGuard SL module for monitoring Weligama Wilt Disease pandemic
-- Technologies: MongoDB, Express.js, React.js, Node.js, Tailwind CSS
-
-Markit - Student Attendance Management System | Individual Project (Aug 2025 - Present)
-- Next-generation attendance management system with AI-powered analytics
-- Features secure JWT authentication and predictive attendance insights
-- Technologies: MongoDB, Express.js, TypeScript, JWT Authentication, Node.js, Tailwind CSS
-
-History Lovers Platform | Group Project (Apr 2025 - Jun 2025)
-- Interactive social learning platform for history enthusiasts with gamified experiences
-- Built advanced content management system with video streaming and progress tracking
-- Technologies: React.js, Spring Boot, Hibernate, MySQL, Tailwind CSS
-
-NAVIGA - Maritime Intelligence | Individual Project (Feb 2024 - Mar 2024)
-- Cutting-edge maritime navigation app design with real-time vessel tracking
-- Created immersive UI/UX with advanced data visualization and emergency protocols
-- Technologies: Figma, UI/UX Design, Mobile Design, User Research
-
-Construction Management Pro | Group Project (Feb 2024 - Jun 2024)
-- Enterprise-grade Construction Management System with client relationship management
-- Engineered scalable admin dashboards with real-time analytics
-- Technologies: MongoDB, Express.js, React.js, JWT Authentication, Node.js
-
-ExamHub - Smart Assessment Portal | Individual Project (Jul 2025 - Aug 2025)
-- Revolutionary examination platform with adaptive testing algorithms
-- Features automated grading and personalized learning analytics
-- Technologies: HTML5, CSS3, JavaScript, Progressive Web App`;
 
         // Download CV function
         function downloadCV() {
-            const blob = new Blob([cvData], { type: 'text/plain' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'Kavindu_Denuwan_CV.txt';
+    try {
+        const a = document.createElement('a');
+        a.href = './Kavindu_Denuwan_CV.pdf';
+        a.download = 'Kavindu_Denuwan_CV.pdf';
+        
+        // Check if the element was created successfully
+        if (a) {
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
-            URL.revokeObjectURL(url);
         }
+    } catch (error) {
+        console.error('Error downloading CV:', error);
+        alert('Sorry, there was an error downloading the CV. Please try again.');
+    }
+}
+
+
 
         // Loading animation
         window.addEventListener('load', () => {
